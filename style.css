@@ -3,3 +3,25 @@ html
 background: blue;
 text: black;
 }
+
+
+.numPad
+
+{
+background: red;
+}
+
+.operator
+{
+background: orange;
+}
+
+.clear 
+{
+background: purple;
+}
+
+.equals 
+{
+background: rgb(78, 77, 77);
+}
