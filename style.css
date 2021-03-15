@@ -4,24 +4,80 @@ background: blue;
 text: black;
 }
 
-
 .numPad
-
 {
-background: red;
+font-size: 20px;
+border-color: black;
+border-style: outset;
+border-radius: 20px;
+background: rgb(110, 174, 190);
 }
 
 .operator
 {
-background: orange;
+font-size: 20px;
+border: none;
+border-color: black;
+border-style: outset;
+border-radius: 20px;
+background: rgb(124, 122, 119);
 }
 
 .clear 
 {
-background: purple;
+font-size: 20px;
+border-color: black;
+border-style: outset;
+border-radius: 20px;
+background: rgb(230, 188, 4);
 }
 
 .equals 
 {
-background: rgb(78, 77, 77);
+font-size: 30px;
+border: none;
+border-radius: 20px;
+background: rgb(58, 9, 194);
+}
+
+.buttonContainer
+{
+display: grid; 
+grid-template-columns: 60px 60px 60px 60px;
+grid-template-rows: 60px 60px 60px 60px;
+}
+
+.calculator
+{
+padding-top: 50px;
+padding-left: 30px;
+padding-right: 30px;
+padding-bottom: 75px;
+background: black;
+border-radius: 100px;
+height: 300px;
+width: 250px; 
+}
+
+.screen
+{
+text-align: center;
+font-size: 50px;
+color: rgba(5, 5, 4, 0.856);
+padding-bottom: 20px;
+border-radius: 10%;
+width: 240px;
+height: 50px;
+background: rgba(177, 175, 175, 0.452);
+}
+
+.spacer
+{
+text-align: left;
+font-size: 10px;
+font-family: Apple Chancery, cursive;
+color: yellow;
+height: 25px;
+width: 250px;
+background: black;
 }
