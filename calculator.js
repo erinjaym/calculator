@@ -1,7 +1,24 @@
 
 let total = 0; 
-let lastTotal = 0; 
+let operator = "none";
+let currentNumber = 0;
+let lastNumber = null;
+let displayNumber = "0";
 
+function execute ()
+{   // only works when new start or after reset. Not after operator call. 
+    if (operator === "none")
+    {
+        display();
+        console.log('worked');
+    }
+    else 
+    {
+        console.log(operator.toString() + lastNumber + currentNumber);
+        return operate (operator, lastNumber, currentNumber); 
+
+    }
+}
 
 // operator assignement with clicks of a button or ASCII assignment
 
@@ -9,40 +26,56 @@ function operate (operator, number1, number2)
 {
     if (operator == "addition")
     {
-        lastTotal = total;
-        total += add(number1, number2);
+        total = add(number1, number2);
+        displayNumber = total.toString();
+        display();
+        currentNumber = total;
+        operator = "none";
         return total;
     }
     else if (operator == "subtraction")
     {
-        lastTotal = total;
-        total += subtract(number1, number2);
+        total = subtract(number1, number2);
+        displayNumber = total.toString();
+        display();
+        currentNumber = total;
+        lastNumber = 0;
+        operator = "none";
         return total;
 
     }
     else if (operator == "multiplication")
     {
-        lastTotal = total;
-        total += multiply(number1, number2);
+        total = multiply(number1, number2);
+        displayNumber = total.toString();
+        display();
+        currentNumber = total;
+        lastNumber = 0;
+        operator = "none";
         return total;
         
     }
     else if (operator == "division")
     {
-        lastTotal = total;
-        total += divide(number1, number2);
+
+        total = divide(number1, number2);
+        displayNumber = total.toString();
+        display();
+        currentNumber = total;
+        lastNumber = 0;
+        operator = "none";
         return total;
         
     }
     else // base case or something went wrong
     {
-    return 80085;
+    return 404;
     }
 }
 
 
 
- 
+
 // operation functions 
     function add (number1, number2) 
     {
@@ -64,8 +97,50 @@ function operate (operator, number1, number2)
     return number1 / number2;
     } 
 
-    function clear()
+
+// need base case for if there is a current total so you cannot add to number
+    function setNumber (number)
     {
-    return total = 0;
+        if (number == 0 && displayNumber == 0 )
+        {
+        display();
+        }
+        else if(displayNumber == 0 || displayNumber == "+*-/")
+        {
+        displayNumber = number.toString();
+        display();
+        }
+        else 
+        {
+        displayNumber += number.toString();
+        display();
+        }
+    currentNumber = parseInt(displayNumber);
+    }
+
+    function setOperator (string)  
+    {
+
+        lastNumber = currentNumber;
+        currentNumber = 0; 
+        displayNumber = "+*-/";
+        display();
+        operator = string; 
+    }
+
+    function reset()
+    {
+        total = 0;
+        currentNumber = 0;
+        lastNumber = null;
+        operator = "none";
+        displayNumber = "0";
+        display();
+    }
+
+    display();
+    function display ()
+    {
+        document.getElementById("onScreen").lastChild.textContent = displayNumber;
     }
 
