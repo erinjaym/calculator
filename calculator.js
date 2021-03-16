@@ -9,17 +9,16 @@ function execute ()
     if (operator === "none")
     {
         display();
-        console.log('worked');
     }
     else 
     {
-        console.log(operator.toString() + lastNumber + currentNumber);
+        console.log(lastNumber.toString() + operator + currentNumber);
         operate (operator, lastNumber, currentNumber); 
         operator = "none";
     }
 }
 
-// operator assignement with clicks of a button or ASCII assignment
+
 
 function operate (operator, number1, number2) 
 {
@@ -59,9 +58,11 @@ function operate (operator, number1, number2)
         return total;
         
     }
-    else // base case or something went wrong
+    else // something went wrong
     {
-    return 404;
+    displayNumber = "OOPS!";
+    display();
+    return "Error";
     }
 }
 
@@ -91,7 +92,7 @@ function operate (operator, number1, number2)
         return number1 * number2;
         }
     }
-
+    divide (5,2);
     function divide (number1, number2)
     {
         if (number2 == 0)
@@ -100,14 +101,21 @@ function operate (operator, number1, number2)
         }
         else 
         {
-         return number1 / number2;
+            if ((number1 / number2).toString().length >= 10) // too big for screen
+            {
+            console.log("rounded");
+            return Math.round(((number1 / number2) + Number.EPSILON) * 100) / 100;
+            }
+            else
+            {
+            return number1 / number2;
+            }
+        
         }
 
 
     } 
 
-
-// need base case for if there is a current total so you cannot add to number
     function setNumber (number)
     {
         if (number == 0 && displayNumber == 0 )
@@ -129,22 +137,24 @@ function operate (operator, number1, number2)
 
     function setOperator (string)  
     {
-        if (operator != "none")
+        if (operator != "none") // equals was not pushed 
         {
             operate (operator, lastNumber, currentNumber); 
-            console.log("dosomeshit");
             lastNumber = currentNumber;
-            currentNumber = 0; 
+            currentNumber = 0;
+            operator = string; 
+
         }
-        else {
+        else { // equals was pushed
 
             operator = string; 
-            console.log("only 2 numbers");
             lastNumber = currentNumber;
             currentNumber = 0; 
             displayNumber = operator;
             display();
+
         }
+
 
      
     }
@@ -159,7 +169,6 @@ function operate (operator, number1, number2)
         display();
     }
 
-    display();
     function display ()
     {
         if (displayNumber.length < 9) 
@@ -176,7 +185,6 @@ function angryPhraseSelector ()
     {
     let angryPhrase = "";
     let gamble = Math.floor(Math.random() * 7);
-    console.log("gamble" + gamble);
     if (gamble == 1)
     {
         angryPhrase = "Really?";
@@ -187,7 +195,7 @@ function angryPhraseSelector ()
     }
     else if (gamble == 3)
     {
-        angryPhrase = "Growl";
+        angryPhrase = "GROWL";
     }
     else if (gamble == 4)
     {
@@ -203,8 +211,13 @@ function angryPhraseSelector ()
     }
     else 
     {
-        angryPhrase = "Really?";
+        angryPhrase = "WHY?";
     }
-
+    total = 0;
+    currentNumber = 0;
+    lastNumber = null;
+    operator = "none";
+    displayNumber = "0";
+    console.log("Number is too big! Calculator is mad!");    
 return angryPhrase;
 }
