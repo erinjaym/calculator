@@ -168,7 +168,43 @@ function operate (operator, number1, number2)
         }
         else
         {
-        document.getElementById("onScreen").lastChild.textContent = "Really?";
+        document.getElementById("onScreen").lastChild.textContent = angryPhraseSelector();
         }
     }
 
+function angryPhraseSelector ()
+    {
+    let angryPhrase = "";
+    let gamble = Math.floor(Math.random() * 7);
+    console.log("gamble" + gamble);
+    if (gamble == 1)
+    {
+        angryPhrase = "Really?";
+    }
+    else if (gamble == 2)
+    {
+        angryPhrase = "HATE U!";
+    }
+    else if (gamble == 3)
+    {
+        angryPhrase = "Growl";
+    }
+    else if (gamble == 4)
+    {
+        angryPhrase = "NOPE!";
+    }
+    else if (gamble == 5)
+    {
+        angryPhrase = "NO!";
+    }
+    else if (gamble == 6)
+    {
+        angryPhrase = "GO AWAY";
+    }
+    else 
+    {
+        angryPhrase = "Really?";
+    }
+
+return angryPhrase;
+}
