@@ -1,4 +1,3 @@
-
 let total = 0; 
 let operator = "none";
 let currentNumber = 0;
@@ -15,8 +14,8 @@ function execute ()
     else 
     {
         console.log(operator.toString() + lastNumber + currentNumber);
-        return operate (operator, lastNumber, currentNumber); 
-
+        operate (operator, lastNumber, currentNumber); 
+        operator = "none";
     }
 }
 
@@ -24,46 +23,39 @@ function execute ()
 
 function operate (operator, number1, number2) 
 {
-    if (operator == "addition")
+    if (operator == "+")
     {
         total = add(number1, number2);
         displayNumber = total.toString();
         display();
         currentNumber = total;
-        operator = "none";
         return total;
     }
-    else if (operator == "subtraction")
+    else if (operator == "-")
     {
         total = subtract(number1, number2);
         displayNumber = total.toString();
         display();
         currentNumber = total;
-        lastNumber = 0;
-        operator = "none";
         return total;
 
     }
-    else if (operator == "multiplication")
+    else if (operator == "*")
     {
         total = multiply(number1, number2);
         displayNumber = total.toString();
         display();
         currentNumber = total;
-        lastNumber = 0;
-        operator = "none";
         return total;
         
     }
-    else if (operator == "division")
+    else if (operator == "/")
     {
 
         total = divide(number1, number2);
         displayNumber = total.toString();
         display();
         currentNumber = total;
-        lastNumber = 0;
-        operator = "none";
         return total;
         
     }
@@ -89,12 +81,29 @@ function operate (operator, number1, number2)
 
     function multiply (number1, number2) 
     {
-    return number1 * number2;
+    
+        if (number1 == 0 || number2 == 0)
+        {
+        return "Duh, 0" ;
+        }
+        else
+        {
+        return number1 * number2;
+        }
     }
 
     function divide (number1, number2)
     {
-    return number1 / number2;
+        if (number2 == 0)
+        {
+        return "LOL";
+        }
+        else 
+        {
+         return number1 / number2;
+        }
+
+
     } 
 
 
@@ -105,7 +114,7 @@ function operate (operator, number1, number2)
         {
         display();
         }
-        else if(displayNumber == 0 || displayNumber == "+*-/")
+        else if(displayNumber == 0 || displayNumber == operator || displayNumber == total)
         {
         displayNumber = number.toString();
         display();
@@ -120,12 +129,24 @@ function operate (operator, number1, number2)
 
     function setOperator (string)  
     {
+        if (operator != "none")
+        {
+            operate (operator, lastNumber, currentNumber); 
+            console.log("dosomeshit");
+            lastNumber = currentNumber;
+            currentNumber = 0; 
+        }
+        else {
 
-        lastNumber = currentNumber;
-        currentNumber = 0; 
-        displayNumber = "+*-/";
-        display();
-        operator = string; 
+            operator = string; 
+            console.log("only 2 numbers");
+            lastNumber = currentNumber;
+            currentNumber = 0; 
+            displayNumber = operator;
+            display();
+        }
+
+     
     }
 
     function reset()
@@ -141,6 +162,13 @@ function operate (operator, number1, number2)
     display();
     function display ()
     {
+        if (displayNumber.length < 9) 
+        {
         document.getElementById("onScreen").lastChild.textContent = displayNumber;
+        }
+        else
+        {
+        document.getElementById("onScreen").lastChild.textContent = "Really?";
+        }
     }
 
