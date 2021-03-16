@@ -5,7 +5,7 @@ let lastNumber = null;
 let displayNumber = "0";
 
 function execute ()
-{   // only works when new start or after reset. Not after operator call. 
+{  
     if (operator === "none")
     {
         display();
@@ -69,7 +69,7 @@ function operate (operator, number1, number2)
 
 
 
-// operation functions 
+
     function add (number1, number2) 
     {
     return number1 + number2;
@@ -113,7 +113,6 @@ function operate (operator, number1, number2)
         
         }
 
-
     } 
 
     function setNumber (number)
@@ -154,8 +153,6 @@ function operate (operator, number1, number2)
             display();
 
         }
-
-
      
     }
 
@@ -221,3 +218,79 @@ function angryPhraseSelector ()
     console.log("Number is too big! Calculator is mad!");    
 return angryPhrase;
 }
+
+// listen for the keyboard commands
+window.addEventListener('keydown', function (e){
+    //numbers and numpad
+    if (e.keyCode == 48 || e.keyCode == 96 )
+    {
+        setNumber(0);
+    }
+
+    else if (e.keyCode == 49 || e.keyCode == 97 )
+    {
+       setNumber(1);
+    }
+    else if (e.keyCode == 50 || e.keyCode == 98)
+    {
+       setNumber(2);
+    }
+    else if (e.keyCode == 51 || e.keyCode == 99 )
+    {
+       setNumber(3);
+    }
+    else if (e.keyCode == 52 || e.keyCode == 100)
+    {
+        setNumber(4);
+    }
+    else if (e.keyCode == 53 || e.keyCode == 101)
+    {
+        setNumber(5);
+    }
+    else if (e.keyCode == 54 || e.keyCode == 102)
+    {
+        setNumber(6);
+    }
+    else if (e.keyCode == 55 || e.keyCode == 103)
+    {
+        setNumber(7);
+    }
+    else if (e.keyCode == 56 || e.keyCode == 104)
+    {
+        setNumber(8);
+    }
+    else if (e.keyCode == 57 || e.keyCode == 105)
+    {
+        setNumber(9);
+    }
+    // operators and execute
+    else if (e.keyCode == 106) // multiply
+    {
+        setOperator('*');
+    }
+    else if (e.keyCode == 107) //add
+    {
+        setOperator('+');
+    }
+    else if (e.keyCode == 109) //subtract
+    {
+        setOperator('-');
+    }
+    else if (e.keyCode == 111) //divide
+    {
+        setOperator('/');
+    }
+    else if (e.keyCode == 67) //clear
+    {
+        reset();
+    }
+    else if (e.keyCode == 187 || e.keyCode == 13) // equals or enter
+    {
+        execute();
+    }
+    else
+    {
+        console.log("that key does nothing");
+    }
+
+});
