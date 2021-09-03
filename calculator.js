@@ -12,13 +12,10 @@ function execute ()
     }
     else 
     {
-        console.log(lastNumber.toString() + operator + currentNumber);
         operate (operator, lastNumber, currentNumber); 
         operator = "none";
     }
 }
-
-
 
 function operate (operator, number1, number2) 
 {
@@ -66,10 +63,6 @@ function operate (operator, number1, number2)
     }
 }
 
-
-
-
-
     function add (number1, number2) 
     {
     return number1 + number2;
@@ -103,7 +96,6 @@ function operate (operator, number1, number2)
         {
             if ((number1 / number2).toString().length >= 10) // too big for screen
             {
-            console.log("rounded");
             return Math.round(((number1 / number2) + Number.EPSILON) * 100) / 100;
             }
             else
@@ -136,7 +128,7 @@ function operate (operator, number1, number2)
 
     function setOperator (string)  
     {
-        if (operator != "none") // equals was not pushed 
+        if (operator != "none") // equals was not pushed but there is an operator selected
         {
             operate (operator, lastNumber, currentNumber); 
             lastNumber = currentNumber;
@@ -144,7 +136,7 @@ function operate (operator, number1, number2)
             operator = string; 
 
         }
-        else { // equals was pushed
+        else { // equals was pushed or no operator selected
 
             operator = string; 
             lastNumber = currentNumber;
@@ -290,7 +282,6 @@ window.addEventListener('keydown', function (e){
     }
     else
     {
-        console.log("that key does nothing");
     }
 
 });
